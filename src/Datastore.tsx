@@ -8,7 +8,7 @@ class Store{
 
     async new_Game (){
         try{
-            let data =  await axios.get('http://sudoku-env.eba-jtqfjqia.us-east-1.elasticbeanstalk.com/api/fullgame')
+            let data =  await axios.get('https://9hzolh7p05.execute-api.us-east-1.amazonaws.com/dev/items')
             .then(res => {
             return res.data
             })
