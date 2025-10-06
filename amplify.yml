@@ -6,6 +6,8 @@ applications:
         preBuild:
           commands:
             - node -v
+            - echo "NEXT_PUBLIC_SUDOKU_BASE=$NEXT_PUBLIC_SUDOKU_BASE"
+            - '[ -n "$NEXT_PUBLIC_SUDOKU_BASE" ] || (echo "ERROR: NEXT_PUBLIC_SUDOKU_BASE is not set!" && exit 1)'
             - npm ci
         build:
           commands:
