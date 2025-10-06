@@ -1,6 +1,6 @@
 export type Board = number[][];
 
-const BASE = process.env.NEXT_PUBLIC_SUDOKU_BASE ?? "http://127.0.0.1:8000";
+const BASE = process.env.NEXT_PUBLIC_SUDOKU_BASE ??'http://127.0.0.1:8080'; 
 
 export async function generatePuzzle(opts: { target_clues?: number; symmetry?: string; seed?: number } = {}) {
   const res = await fetch(`${BASE}/generate`, {

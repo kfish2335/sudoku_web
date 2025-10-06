@@ -11,7 +11,7 @@ app = FastAPI(title="Sudoku API", version="1.0")
 # CORS: add your front-end origins here or via env var
 origins = os.getenv(
     "ALLOWED_ORIGINS",
-    "http://localhost:3000,http://127.0.0.1:3000,https://sudoku.kurkfisher.me/"
+    "http://localhost:3000,http://127.0.0.1:3000,https://sudoku.kurkfisher.me/,https://master.d3glxos4xreezv.amplifyapp.com"
 ).split(",")
 
 app.add_middleware(
