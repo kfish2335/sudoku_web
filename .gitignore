@@ -1,6 +1,0 @@
-# env / secrets
-*.env
-*.env.*
-backend.env
-backend/.env
-
