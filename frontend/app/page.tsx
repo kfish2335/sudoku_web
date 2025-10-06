@@ -162,12 +162,6 @@ const load = async (diff: Diff) => {
       <BoardGrid board={board} givenMask={givenMask} onChange={handleChange} errors={errors} />
 
       <hr />
-      <p className="small">
-        Backend base URL: <code>{process.env.NEXT_PUBLIC_SUDOKU_BASE || 'http://127.0.0.1:8000'}</code> • Endpoints used: <code>POST /generate</code>, <code>POST /solve</code>.
-      </p>
-      <p className="small">
-        Tips: Use number keys (1–9) to fill, backspace to clear. Click <kbd>Check</kbd> to highlight duplicates in rows, columns, and 3×3 boxes.
-      </p>
     </div>
   );
 }
