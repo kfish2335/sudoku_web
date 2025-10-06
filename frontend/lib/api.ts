@@ -1,9 +1,13 @@
 export type Board = number[][];
 
-const BASE = "https://pba2vssyyd.us-east-1.awsapprunner.com"; 
+export const API_BASE =
+  process.env.NEXT_PUBLIC_SUDOKU_BASE ||
+  (process.env.NODE_ENV === 'production'
+    ? 'https://pba2vssyyd.us-east-1.awsapprunner.com'
+    : 'http://127.0.0.1:8000');
 
 export async function generatePuzzle(opts: { target_clues?: number; symmetry?: string; seed?: number } = {}) {
-  const res = await fetch(`${BASE}/generate`, {
+  const res = await fetch(`${API_BASE}/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -18,7 +22,7 @@ export async function generatePuzzle(opts: { target_clues?: number; symmetry?: s
 }
 
 export async function solveBoard(board: Board) {
-  const res = await fetch(`${BASE}/solve`, {
+  const res = await fetch(`${API_BASE}/solve`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ board }),
