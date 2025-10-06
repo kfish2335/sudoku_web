@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BoardGrid from '@/components/Board';
-import { Board, cloneBoard, emptyBoard, generatePuzzle, isComplete, solveBoard } from '@/lib/api';
+import { Board, cloneBoard, emptyBoard, generatePuzzle, solveBoard } from '@/lib/api';
 
 type Diff = 'easy' | 'medium' | 'hard';
 
@@ -31,8 +31,9 @@ const load = async (diff: Diff) => {
     setGivenMask(puzzle.map((row) => row.map((v) => v !== 0)));
     setErrors(new Set());
     setDifficulty(diff);   // 👈 store the current difficulty
-  } catch (e: any) {
-    alert(e.message || 'Failed to generate');
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : 'Failed to generate';
+    alert(msg);
   } finally {
     setLoading(null);
   }
@@ -41,7 +42,6 @@ const load = async (diff: Diff) => {
   useEffect(() => {
     // auto-generate an easy puzzle on load
     load('easy');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (r: number, c: number, v: number) => {
@@ -103,8 +103,9 @@ const load = async (diff: Diff) => {
       const { solved } = await solveBoard(board);
       setBoard(solved);
       setErrors(new Set());
-    } catch (e: any) {
-      alert(e.message || 'Failed to solve');
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Failed to solve';
+      alert(msg);
     } finally {
       setLoading(null);
     }
